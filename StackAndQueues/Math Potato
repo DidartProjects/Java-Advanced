@@ -1,0 +1,47 @@
+package StacksAndQueues;
+
+import java.util.ArrayDeque;
+import java.util.Scanner;
+
+public class MathPotato {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        String[] input = scanner.nextLine().split("\\s+");
+        int number = Integer.parseInt(scanner.nextLine());
+
+        ArrayDeque<String> queue = new ArrayDeque<>();
+
+        int cycle = 1;
+        for (int index = 0; index < input.length; index++) {
+            queue.offer(input[index]);
+        }
+        while (queue.size() > 1) {
+
+            for (int i = 0; i < number - 1; i++) {
+                String name = queue.poll();
+                queue.offer(name);
+            }
+            if (isPrime(cycle)) {
+                System.out.println("Prime " + queue.peek());
+            } else {
+                System.out.println("Removed " + queue.poll());
+            }
+            cycle++;
+        }
+        for (String kid : queue) {
+            System.out.println("Last is " + kid);
+        }
+    }
+
+    public static boolean isPrime(int number) {
+        if (number == 1) return false;
+        
+        for (int i = 2; i < number; i++) {
+            if (number % i == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
