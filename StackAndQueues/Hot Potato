@@ -1,0 +1,33 @@
+package StacksAndQueues;
+
+import java.util.ArrayDeque;
+import java.util.Scanner;
+
+public class HotPotato {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        String[] input = scanner.nextLine().split("\\s+");
+
+        int number = Integer.parseInt(scanner.nextLine());
+
+        ArrayDeque<String> queue = new ArrayDeque<>();
+
+        for (int i = 0; i < input.length; i++) {
+            queue.offer(input[i]);
+        }
+
+        while (queue.size() > 1) {
+            
+            for (int i = 0; i < number - 1; i++) {
+                String name = queue.poll();
+                queue.offer(name);
+            }
+            System.out.println("Removed " + queue.poll());
+        }
+        
+        for (String child : queue) {
+            System.out.println("Last is " + child);
+        }
+    }
+}
