@@ -1,0 +1,47 @@
+package StacksAndQueues1;
+
+import java.util.ArrayDeque;
+import java.util.Scanner;
+
+public class SimpleTextEditor {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        ArrayDeque<String> wordStates = new ArrayDeque<>();
+
+        int n = Integer.parseInt(scanner.nextLine());
+
+        StringBuilder currentSymbol = new StringBuilder();
+
+        for (int count = 1; count <= n; count++) {
+            String command = scanner.nextLine(); 
+           
+            String commandNumber = command.split("\\s+")[0]; 
+            switch (commandNumber) {
+                case "1":
+                    String textToAdd = command.split("\\s+")[1];
+                    currentSymbol.append(textToAdd);
+                    wordStates.push(currentSymbol.toString());
+                    break;
+                case "2":
+                    int countElements = Integer.parseInt(command.split("\\s+")[1]);
+                    int startIndex = currentSymbol.length() - countElements;
+                    currentSymbol.delete(startIndex, startIndex + countElements);
+                    wordStates.push(currentSymbol.toString());
+                    break;
+                case "3":
+                    int index = Integer.parseInt(command.split("\\s+")[1]);
+                    System.out.println(currentSymbol.charAt(index - 1));
+                    break;
+                case "4":
+                    if (wordStates.size() > 1) {
+                        wordStates.pop();
+                        currentSymbol = new StringBuilder(wordStates.peek());
+                    } else {
+                        currentSymbol = new StringBuilder();
+                    }
+                    break;
+            }
+        }
+    }
+}
