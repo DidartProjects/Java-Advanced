@@ -1,0 +1,40 @@
+package MultidimensionalArrays;
+
+import java.util.Scanner;
+
+public class MaximumSumOf2x2Submatrix {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        String[] input = scanner.nextLine().split(", ");
+
+        int rows = Integer.parseInt(input[0]);
+        int cols = Integer.parseInt(input[1]);
+
+        String[][] matrix = new String[rows][cols];
+
+        for (int i = 0; i < rows; i++) {
+            matrix[i] = scanner.nextLine().split(", ");
+        }
+
+        int maxSum = Integer.MIN_VALUE;
+        int row = 0;
+        int col = 0;
+
+        for (int r = 0; r < matrix.length - 1; r++) {
+            for (int c = 0; c < matrix[r].length - 1; c++) {
+                int sum = Integer.parseInt(matrix[r][c]) + Integer.parseInt(matrix[r][c + 1]);
+                sum += Integer.parseInt(matrix[r + 1][c]) + Integer.parseInt(matrix[r + 1][c + 1]);
+                if (sum > maxSum) {
+                    maxSum = sum;
+                    row = r;
+                    col = c;
+                }
+            }
+        }
+
+        System.out.println(matrix[row][col] + " " + matrix[row][col + 1]);
+        System.out.println(matrix[row + 1][col] + " " + matrix[row + 1][col + 1]);
+        System.out.println(maxSum);
+    }
+}
