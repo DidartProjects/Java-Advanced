@@ -1,0 +1,61 @@
+package MultidimensionalArrays2;
+
+import java.util.Scanner;
+
+public class CompareMatrices {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        String[] firstDimension = scanner.nextLine().split(" ");
+        int row = Integer.parseInt(firstDimension[0]);
+        int col = Integer.parseInt(firstDimension[1]);
+
+        int[][] firstMatrix = new int[row][col];
+
+        for (int rowFirst = 0; rowFirst < row; rowFirst++) {
+            String[] firstArray = scanner.nextLine().split(" ");
+            for (int colFirst = 0; colFirst < col; colFirst++) {
+                firstMatrix[rowFirst][colFirst] = Integer.parseInt(firstArray[colFirst]);
+
+            }
+        }
+
+        String[] secondDimension = scanner.nextLine().split(" ");
+        int rowSecond = Integer.parseInt(secondDimension[0]);
+        int colSecond = Integer.parseInt(secondDimension[1]);
+
+        int[][] secondMatrix = new int[rowSecond][colSecond];
+
+        for (int rows = 0; rows < rowSecond; rows++) {
+            String[] secondArray = scanner.nextLine().split(" ");
+            for (int cols = 0; cols < colSecond; cols++) {
+                secondMatrix[rows][cols] = Integer.parseInt(secondArray[cols]);
+
+            }
+        }
+        if (EqualMatrix(firstMatrix, secondMatrix)) {
+            System.out.println("equal");
+
+        } else {
+            System.out.println("not equal");
+        }
+
+    }
+
+    public static boolean EqualMatrix(int[][] firstMatrix, int[][] secondMatrix) {
+        if (firstMatrix.length != secondMatrix.length) {
+            return false;
+        }
+        for (int row = 0; row < firstMatrix.length; row++) {
+            if (firstMatrix[row].length != secondMatrix[row].length) {
+                return false;
+            }
+            for (int col = 0; col < firstMatrix[row].length; col++) {
+                if (firstMatrix[row][col] != secondMatrix[row][col]) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+}
