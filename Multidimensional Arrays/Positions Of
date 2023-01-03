@@ -1,0 +1,36 @@
+package MultidimensionalArrays;
+
+import java.util.Scanner;
+
+public class PositionsOf {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        String[] matrixSize = scanner.nextLine().split(" ");
+        int rows = Integer.parseInt(matrixSize[0]);
+        int cols = Integer.parseInt(matrixSize[1]);
+
+        int[][] matrix = new int[rows][cols];
+
+        for (int row = 0; row < matrix.length; row++) {
+            String[] line = scanner.nextLine().split(" ");
+            for (int col = 0; col < matrix[0].length; col++) {
+                matrix[row][col] = Integer.parseInt(line[col]);
+            }
+        }
+        int searchNumber = scanner.nextInt();
+        boolean isFound = false;
+
+        for (int r = 0; r < matrix.length; r++) {
+            for (int c = 0; c < matrix[0].length; c++) {
+                if (matrix[r][c] == searchNumber) {
+                    System.out.println(r + " " + c);
+                    isFound = true;
+                }
+            }
+        }
+        if (!isFound) {
+            System.out.print("not found");
+        }
+    }
+}
