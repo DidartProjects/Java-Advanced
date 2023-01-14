@@ -1,0 +1,60 @@
+package MultidimensionalArrays2;
+
+import java.util.Scanner;
+
+public class MatrixShuffling {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        int rows = scanner.nextInt();
+        int cols = scanner.nextInt();
+        scanner.nextLine();
+
+        String[][] matrix = new String[rows][cols];
+
+        for (int row = 0; row < rows; row++) {
+            matrix[row] = scanner.nextLine().split("\\s+");
+        }
+
+        String input = scanner.nextLine();
+        while (!"END".equals(input)) {
+            String[] tokens = input.split("\\s+");
+
+            if (!"swap".equals(tokens[0])) {
+                System.out.println("Invalid input!");
+            } else {
+                try {
+                    int row1 = Integer.parseInt(tokens[1]);
+                    int col1 = Integer.parseInt(tokens[2]);
+                    int row2 = Integer.parseInt(tokens[3]);
+                    int col2 = Integer.parseInt(tokens[4]);
+                    swapValues(matrix, row1, col1, row2, col2);
+                    printMatrix(matrix);
+                } catch (Exception e) {
+                    System.out.println("Invalid input!");
+                }
+            }
+            input = scanner.nextLine();
+        }
+    }
+
+    private static void swapValues(String[][] matrix, int row1, int col1, int row2, int col2) {
+        String temporaryValue = matrix[row1][col1];
+        matrix[row1][col1] = matrix[row2][col2];
+        matrix[row2][col2] = temporaryValue;
+    }
+
+    static void printMatrix(String[][] matrix) {
+        for (int row = 0; row < matrix.length; row++) {
+            for (int col = 0; col < matrix[0].length; col++) {
+                System.out.print(matrix[row][col] + " ");
+            }
+            System.out.println();
+        }
+    }
+}
+
+
+
+
+
