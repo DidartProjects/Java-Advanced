@@ -1,0 +1,55 @@
+package MultidimensionalArrays2;
+
+import java.util.Scanner;
+
+public class FillTheMatrix {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        String[] line = scanner.nextLine().split(", ");
+        int matSize = Integer.parseInt(line[0]);
+        char pattern = line[1].charAt(0);
+        int num = 1;
+        int row;
+        int col;
+
+        int[][] matrix = new int[matSize][matSize];
+
+        switch (pattern) {
+            case 'A':
+                for (col = 0; col < matSize; col++) {
+                    for (row = 0; row < matSize; row++) {
+                        matrix[row][col] = num;
+                        num++;
+                    }
+                }
+                PrintMatrix(matrix);
+                break;
+            case 'B':
+                for (col = 0; col < matSize; col++) {
+                    if (col % 2 == 0) {
+                        for (row = 0; row < matSize; row++) {
+                            matrix[row][col] = num;
+                            num++;
+                        }
+                    } else {
+                        for (row = matSize - 1; row >= 0; row--) {
+                            matrix[row][col] = num;
+                            num++;
+                        }
+                    }
+                }
+                PrintMatrix(matrix);
+                break;
+        }
+    }
+    
+    private static void PrintMatrix(int[][] matrix) {
+        for (int row = 0; row < matrix.length; row++) {
+            for (int col = 0; col < matrix[0].length; col++) {
+                System.out.print(matrix[row][col] + " ");
+            }
+            System.out.println();
+        }
+    }
+}
