@@ -1,0 +1,26 @@
+package SetsAndMaps;
+
+import java.util.Scanner;
+import java.util.TreeSet;
+
+public class SoftUniParty {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        TreeSet<String> guestId = new TreeSet<>();
+        String command;
+
+        while (!"PARTY".equals(command = scanner.nextLine())) {
+            guestId.add(command);
+        }
+        
+        while (!"END".equals(command = scanner.nextLine())) {
+            guestId.remove(command);
+        }
+        System.out.println(guestId.size());
+
+        for (String people : guestId) {
+            System.out.println(people);
+        }
+    }
+}
