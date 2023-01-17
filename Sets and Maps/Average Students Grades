@@ -1,0 +1,36 @@
+package SetsAndMaps3;
+
+import java.util.*;
+
+public class AverageStudentsGrades {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        Map<String, List<Double>> students = new TreeMap<>();
+
+        int num = Integer.parseInt(scanner.nextLine());
+
+        for (int index = 0; index < num; index++) {
+            String[] input = scanner.nextLine().split("\\s+");
+
+            String name = input[0];
+            double grade = Double.parseDouble(input[1]);
+            students.putIfAbsent(name, new ArrayList<>());
+            students.get(name).add(grade);
+        }
+
+        for (Map.Entry<String, List<Double>> entry : students.entrySet()) {
+
+            System.out.print(entry.getKey() + " -> ");
+
+            double average = 0;
+            for (Double s : entry.getValue()) {
+                System.out.printf("%.2f ", s);
+                average += s;
+            }
+            System.out.printf("(avg: %.2f)%n", average / entry.getValue().size());
+        }
+    }
+}
+
+
