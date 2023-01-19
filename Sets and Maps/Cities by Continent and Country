@@ -1,0 +1,46 @@
+package SetsAndMaps;
+
+import java.util.*;
+
+public class CitiesByContinentAndCountry {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        int number = Integer.parseInt(scanner.nextLine());
+
+        Map<String, Map<String, List<String>>> nestedMap = new LinkedHashMap<>();
+
+        for (int index = 0; index < number; index++) {
+            String[] tokens = scanner.nextLine().split("\\s+");
+            String continent = tokens[0];
+            String country = tokens[1];
+            String city = tokens[2];
+
+            nestedMap.putIfAbsent(continent, new LinkedHashMap<>());
+
+            if (nestedMap.containsKey(continent)) {
+                nestedMap.get(continent).putIfAbsent(country, new ArrayList<>());
+
+                if (nestedMap.get(continent).containsKey(country)) {
+                    nestedMap.get(continent).get(country).add(city);
+                }
+            }
+        }
+        System.out.println();
+        nestedMap.forEach((key, value) -> {
+
+            System.out.printf("%s:%n",key);
+
+            for (Map.Entry<String, List<String>> country : value.entrySet()) {
+                System.out.printf("%s -> ", country.getKey());
+                for (int i = 0; i < country.getValue().size(); i++) {
+                    System.out.printf("%s", country.getValue().get(i));
+                    if (i < country.getValue().size() - 1) {
+                        System.out.print(", ");
+                    }
+                }
+                System.out.println();
+            }
+        });
+    }
+}
