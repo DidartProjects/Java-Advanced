@@ -1,0 +1,76 @@
+package SetsAndMaps3;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+import java.util.TreeMap;
+
+public class LegendaryFarming {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        boolean isObtained = false;
+
+        Map<String, Integer> keyMaterials = new HashMap<>();
+        keyMaterials.put("motes", 0);
+        keyMaterials.put("shards", 0);
+        keyMaterials.put("fragments", 0);
+
+        Map<String, Integer> junk = new TreeMap<>();
+
+
+        while (!isObtained) {
+            String[] materials = scanner.nextLine().split("\\s+");
+
+            for (int i = 0; i < materials.length - 1; i += 2) {
+                int quantity = Integer.parseInt(materials[i]);
+                String item = materials[i + 1].toLowerCase();
+
+                if (item.equals("motes") || item.equals("shards") || item.equals("fragments")) {
+                    keyMaterials.put(item, keyMaterials.get(item) + quantity);
+
+                    if (keyMaterials.get(item) >= 250) {
+                        keyMaterials.put(item, keyMaterials.get(item) - 250);
+                        if (item.equals("motes")) {
+                            System.out.println("Dragonwrath obtained!");
+                            isObtained = true;
+                            break;
+
+                        } else if (item.equals("shards")) {
+                            System.out.println("Shadowmourne obtained!");
+                            isObtained = true;
+                            break;
+                        } else {
+                            System.out.println("Valanyr obtained!");
+                            isObtained = true;
+                            break;
+                        }
+                    }
+
+                } else {
+                    if (!junk.containsKey(item)) {
+                        junk.put(item, quantity);
+
+                    } else {
+                        junk.put(item, junk.get(item) + quantity);
+                    }
+                }
+            }
+        }
+        keyMaterials
+                .entrySet()
+                .stream()
+                .sorted((a, b) -> {
+                    if (b.getValue() - a.getValue() == 0) {
+                        return a.getKey()
+                                .compareTo(b.getKey());
+                    } else {
+                        return b.getValue() - a.getValue();
+                    }
+                }).forEach(entry -> System.out.printf("%s: %d%n", entry.getKey(), entry.getValue()));
+
+        for (Map.Entry<String, Integer> token : junk.entrySet()) {
+            System.out.printf("%s: %d%n", token.getKey(), token.getValue());
+        }
+    }
+}
