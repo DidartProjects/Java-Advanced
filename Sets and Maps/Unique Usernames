@@ -1,0 +1,23 @@
+package SetsAndMaps3;
+
+import java.util.LinkedHashSet;
+import java.util.Scanner;
+import java.util.Set;
+
+public class UniqueUsernames {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        Set<String> user = new LinkedHashSet<>(); //запазваме реда на добавяне
+
+        int countUsernames = Integer.parseInt(scanner.nextLine());
+
+        for (int count = 1; count <= countUsernames; count++) {
+            String username = scanner.nextLine();
+            user.add(username);
+        }
+
+        user.forEach(System.out::println);
+
+    }
+}
