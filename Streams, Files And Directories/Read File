@@ -9,7 +9,7 @@ public class ReadFile {
     public static void main(String[] args) throws IOException {
         Scanner scanner = new Scanner(System.in);
 
-        String path = "C:\\Users\\User\\Desktop\\Java Advanced - 10.01.23 - 13.09.22\\src\\StreamsFilesAndDirectories4\\04. Java-Advanced-Files-and-Streams-Lab-Resources\\input.txt";
+        String path = "input.txt";
 
         try (InputStream fileInputStream = new FileInputStream(path)){
             int oneByte = fileInputStream.read();
@@ -19,7 +19,7 @@ public class ReadFile {
                 oneByte = fileInputStream.read();
             }
         } catch (IOException e) {
-            e.printStackTrace();     //throw new RuntimeException(e);
+            e.printStackTrace();     
         }finally {
 
         }
