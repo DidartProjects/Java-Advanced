@@ -1,0 +1,37 @@
+package StreamsFilesAndDirectories4;
+
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.*;
+
+public class WriteToFile {
+    public static void main(String[] args) throws IOException {
+
+        String pathIn = "C:\\Users\\User\\Desktop\\Java Advanced - 10.01.23 - 13.09.22\\src\\StreamsFilesAndDirectories4\\04. Java-Advanced-Files-and-Streams-Lab-Resources\\input.txt";
+        String pathOut = "C:\\Users\\User\\Desktop\\Java Advanced\\src\\StreamsFilesAndDirectories\\04. Java-Advanced-Streams-Files-and-Directories-Resources\\04. Java-Advanced-Files-and-Streams-Lab-Resources\\WriteToFileOutput.txt";
+
+        Set<Character> forbiddenSymbols = new HashSet<>();
+        Collections.addAll(forbiddenSymbols, '.', ',', '!', '?');
+
+       try (FileInputStream in = new FileInputStream(pathIn);
+            FileOutputStream out = new FileOutputStream(pathOut)) {
+
+           int oneByte = in.read();
+           while (oneByte >= 0) {
+               char myByteAsChar = (char) oneByte;
+               if (!forbiddenSymbols.contains(myByteAsChar)) {
+                   out.write(oneByte);
+               }
+               oneByte = in.read();
+           }
+       } catch (IOException e){
+           throw  new RuntimeException(e);
+       }
+    }
+}
+
+
+
+
+
