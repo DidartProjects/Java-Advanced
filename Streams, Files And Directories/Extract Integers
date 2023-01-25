@@ -1,0 +1,29 @@
+package StreamsFilesAndDirectories4;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.PrintWriter;
+import java.util.Scanner;
+
+public class ExtractIntegers {
+    public static void main(String[] args) throws FileNotFoundException {
+    
+        String inputPath = "input.txt";
+       String outputPath = "output.txt";
+
+        Scanner scanner = new Scanner(new FileInputStream(inputPath));
+        PrintWriter myFileOutput = new PrintWriter(new FileOutputStream(outputPath));
+
+        while (scanner.hasNext()) {
+            if (scanner.hasNextInt()) {
+                myFileOutput.println(scanner.nextInt());
+                int myNumber = scanner.nextInt();
+     
+               myFileOutput.println(myNumber);      
+            }
+            scanner.next();
+        }
+        myFileOutput.close();
+    }
+}
