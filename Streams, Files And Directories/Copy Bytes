@@ -5,8 +5,8 @@ import java.io.*;
 public class CopyBytes {
     public static void main(String[] args) throws IOException {
 
-        String pathIn = "C:\\Users\\User\\Desktop\\Java Advanced\\src\\StreamsFilesAndDirectories\\04. Java-Advanced-Streams-Files-and-Directories-Resources\\04. Java-Advanced-Files-and-Streams-Lab-Resources\\input.txt";
-        String pathOut = "C:\\Users\\User\\Desktop\\Java Advanced\\src\\StreamsFilesAndDirectories\\04. Java-Advanced-Streams-Files-and-Directories-Resources\\04. Java-Advanced-Files-and-Streams-Lab-Resources\\03.CopyBytesOutput.txt";
+        String pathIn = "input.txt";
+        String pathOut = "output.txt";
 
         FileInputStream in = new FileInputStream(pathIn);
         FileOutputStream out = new FileOutputStream(pathOut);
