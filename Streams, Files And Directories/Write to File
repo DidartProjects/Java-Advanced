@@ -8,8 +8,8 @@ import java.util.*;
 public class WriteToFile {
     public static void main(String[] args) throws IOException {
 
-        String pathIn = "C:\\Users\\User\\Desktop\\Java Advanced - 10.01.23 - 13.09.22\\src\\StreamsFilesAndDirectories4\\04. Java-Advanced-Files-and-Streams-Lab-Resources\\input.txt";
-        String pathOut = "C:\\Users\\User\\Desktop\\Java Advanced\\src\\StreamsFilesAndDirectories\\04. Java-Advanced-Streams-Files-and-Directories-Resources\\04. Java-Advanced-Files-and-Streams-Lab-Resources\\WriteToFileOutput.txt";
+        String pathIn = "input.txt";
+        String pathOut = "output.txt";
 
         Set<Character> forbiddenSymbols = new HashSet<>();
         Collections.addAll(forbiddenSymbols, '.', ',', '!', '?');
