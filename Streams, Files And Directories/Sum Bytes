@@ -1,0 +1,24 @@
+package StreamsFilesAndDirectories4;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.List;
+import java.util.Scanner;
+
+public class SumBytes {
+    public static void main(String[] args) throws IOException {
+        Scanner scanner = new Scanner(System.in);
+
+        String pathToFile = "C:\\Users\\User\\Desktop\\Java Advanced - 10.01.23 - 13.09.22\\src\\StreamsFilesAndDirectories4\\04. Java-Advanced-Files-and-Streams-Exercises-Resources\\input.txt";
+        List<String> allLines = Files.readAllLines(Path.of(pathToFile));
+
+        long sum = 0;
+        for (String line : allLines) {
+            for (char symbol : line.toCharArray()) {
+                sum += symbol;
+            }
+        }
+        System.out.println(sum);
+    }
+}
