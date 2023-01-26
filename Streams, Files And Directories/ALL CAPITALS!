@@ -1,0 +1,21 @@
+package StreamsFilesAndDirectories4;
+
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.List;
+
+public class AllCAPITALS {
+    public static void main(String[] args) throws IOException {
+
+        String path = "C:\\Users\\User\\Desktop\\Java Advanced - 10.01.23 - 13.09.22\\src\\StreamsFilesAndDirectories4\\04. Java-Advanced-Files-and-Streams-Exercises-Resources\\input.txt";
+        BufferedWriter bw = new BufferedWriter(new FileWriter("output.txt"));
+
+        List<String> allLines = Files.readAllLines(Path.of(path));
+        for (String line : allLines) {
+            bw.write(line.toUpperCase());
+            bw.newLine();
+        }
+        bw.close();
+    }
+}
