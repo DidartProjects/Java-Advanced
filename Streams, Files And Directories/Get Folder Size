@@ -1,0 +1,25 @@
+package StreamsFilesAndDirectories4;
+
+import java.io.File;
+
+public class GetFolderSize {
+    public static void main(String[] args) throws NullPointerException {
+
+        String path = "C:\\Users\\User\\Desktop\\Java Advanced - 10.01.23 - 13.09.22\\src\\StreamsFilesAndDirectories4\\04. Java-Advanced-Files-and-Streams-Exercises-Resources\\Exercises Resources";
+        File folder = new File(path);
+        
+        File[] allFiles = folder.listFiles();
+
+        int folderSize = 0; 
+        if(allFiles != null) {
+        
+            for (File file : allFiles) {
+                folderSize += file.length();
+            }
+        }
+        System.out.println("Folder size: " + folderSize);
+    }
+}
+
+
+
