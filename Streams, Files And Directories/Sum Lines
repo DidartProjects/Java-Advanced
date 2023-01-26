@@ -8,7 +8,7 @@ import java.util.List;
 public class SumLines {
     public static void main(String[] args) throws IOException {
 
-        String pathToFile = "C:\\Users\\didar\\Desktop\\Java Advanced - 10.01.23 - 13.09.22\\src\\StreamsFilesAndDirectories4\\04. Java-Advanced-Files-and-Streams-Exercises-Resources\\input.txt";
+        String pathToFile = "C:\\Users\\User\\Desktop\\Java Advanced - 10.01.23 - 13.09.22\\src\\StreamsFilesAndDirectories4\\04. Java-Advanced-Files-and-Streams-Exercises-Resources\\input.txt";
         
         List<String> allLines = Files.readAllLines(Path.of(pathToFile));
 
