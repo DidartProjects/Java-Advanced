@@ -1,0 +1,64 @@
+package FunctionalProgramming5;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.*;
+import java.util.function.Consumer;
+import java.util.function.Function;
+import java.util.function.Predicate;
+
+public class SortEvenNumbers {
+    public static void main(String[] args) throws IOException {
+        Scanner scanner = new Scanner(System.in);
+
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
+        List<Integer> evenNumbers = new ArrayList<>();
+
+        String text = reader.readLine();
+        Function<String, int[]> parseInput = input -> {
+            String[] tokens = input.split(", ");
+            int[] result = new int[tokens.length];
+            for (int i = 0; i < result.length; i++) {
+                result[i] = Integer.parseInt(tokens[i]);
+            }
+            return result;
+        };
+
+        int[] numbers = parseInput.apply(text);
+
+        Predicate<Integer> isEvenNumber = num -> num % 2 == 0;
+
+        Function<int[], List<Integer>> fillWithEvenNumbers = integerArray -> {
+            List<Integer> result = new ArrayList<>();
+            for (int i = 0; i < integerArray.length; i++) {
+                if (isEvenNumber.test(integerArray[i])) {
+                    result.add(integerArray[i]);
+                }
+            }
+            return result;
+        };
+
+        Consumer<List<Integer>> printList = listOfIntegers -> {
+            StringBuilder sb = new StringBuilder();
+            Iterator<Integer> iterator = listOfIntegers.iterator();
+            while (iterator.hasNext()) {
+                sb.append(iterator.next());
+                if (iterator.hasNext()) {
+                    sb.append(", ");
+                }
+            }
+
+            System.out.println(sb);
+        };
+
+        evenNumbers = fillWithEvenNumbers.apply(numbers);
+        printList.accept(evenNumbers);
+        evenNumbers.sort((n1, n2) -> n1.compareTo(n2));
+        printList.accept(evenNumbers);
+
+        reader.close();
+       
+    }
+}
